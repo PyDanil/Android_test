@@ -1,0 +1,90 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Общая статистика{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Общая статистика</h1>
+    
+    <section class="mb-5">
+        <h2>Динамика уровня зарплат по годам</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Год</th>
+                            <th>Средняя зарплата (руб)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for year in years %}
+                        <tr>
+                            <td>{{ year.year }}</td>
+                            <td>{{ year.avg_salary|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <canvas id="salaryChart"></canvas>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Аналогичные секции для остальных данных -->
+    
+    <section class="mb-5">
+        <h2>ТОП-20 навыков по годам</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Навык</th>
+                        <th>Год</th>
+                        <th>Количество упоминаний</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for skill in skills %}
+                    <tr>
+                        <td>{{ skill.name }}</td>
+                        <td>{{ skill.year }}</td>
+                        <td>{{ skill.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // График для зарплат
+    const salaryCtx = document.getElementById('salaryChart').getContext('2d');
+    new Chart(salaryCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ years_labels|safe }},
+            datasets: [{
+                label: 'Средняя зарплата (руб)',
+                data: {{ salary_data }},
+                backgroundColor: 'rgba(61, 220, 132, 0.7)',
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    // Добавьте аналогичные скрипты для других графиков
+</script>
+{% endblock %}

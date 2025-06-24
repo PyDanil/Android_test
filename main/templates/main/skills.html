@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Навыки{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>ТОП-20 навыков для Android-разработчиков</h1>
+    
+    {% for year, skills in skills_by_year.items %}
+    <section class="mb-5">
+        <h2>{{ year }} год</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Навык</th>
+                            <th>Количество упоминаний</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for skill in skills %}
+                        <tr>
+                            <td>{{ skill.name }}</td>
+                            <td>{{ skill.count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <canvas id="skillsChart{{ year }}"></canvas>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</div>
+
+<script>
+    // Скрипты для графиков по годам
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Востребованность{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>Востребованность Android-разработчиков</h1>
+    
+    <section class="mb-5">
+        <h2>Динамика уровня зарплат по годам</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Год</th>
+                            <th>Средняя зарплата (руб)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for year in years %}
+                        <tr>
+                            <td>{{ year.year }}</td>
+                            <td>{{ year.avg_salary_android|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <canvas id="salaryChart"></canvas>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Аналогичная секция для количества вакансий -->
+</div>
+
+<script>
+    // Скрипты для графиков аналогичные general_stats.html
+</script>
+{% endblock %}

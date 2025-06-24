@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+
+{% block title %}Главная - Android разработчик{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>{{ profession_title }}</h1>
+    
+    <div class="profession-description">
+        {{ profession_description|safe }}
+    </div>
+    
+    <div class="profession-image text-center mt-4">
+        <img src="/static/{{ image_url }}" alt="{{ image_description }}" class="img-fluid rounded">
+        <p class="image-caption mt-2">{{ image_description }}</p>
+    </div>
+</div>
+{% endblock %}

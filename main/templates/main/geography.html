@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}География{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1>География Android-разработчиков</h1>
+    
+    <section class="mb-5">
+        <h2>Уровень зарплат по городам</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Город</th>
+                            <th>Средняя зарплата (руб)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for city in cities_salary %}
+                        <tr>
+                            <td>{{ city.city }}</td>
+                            <td>{{ city.avg_salary_android|floatformat:2 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <canvas id="salaryChart"></canvas>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Аналогичная секция для доли вакансий -->
+</div>
+
+<script>
+    // Скрипты для графиков
+</script>
+{% endblock %}
