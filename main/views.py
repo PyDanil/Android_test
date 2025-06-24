@@ -1,5 +1,8 @@
 from django.shortcuts import render
 import requests
+from .models import Skill
+from .models import CityStatistic
+from .models import YearStatistic
 from datetime import datetime, timedelta
 from django.core.cache import cache  # Добавляем импорт cache
 from django.conf import settings
