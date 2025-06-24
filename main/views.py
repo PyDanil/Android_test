@@ -1,8 +1,4 @@
 from django.shortcuts import render
-import requests
-from datetime import datetime, timedelta
-from django.core.cache import cache
-from .models import YearStatistic, CityStatistic, Skill
 
 def home(request):
     # Статическое описание профессии
@@ -49,3 +45,4 @@ def home(request):
     }
     return render(request, 'main/home.html', context)
 
+    
